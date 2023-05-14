@@ -1,0 +1,11 @@
+body {
+    width: 780px;
+}
+
+.nav-item {
+    cursor: pointer;
+}
+
+.nav-item.active {
+    background-color: beige;
+}
