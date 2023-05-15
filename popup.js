@@ -10,21 +10,18 @@ window.onload = () => {
 };
 
 const onStartUp = () => {
-    showScreen(CONST_SCREEN.LIST_MANGA);
+    showScreen(CONST_SCREEN.LIST);
 }
 
 
 const showScreen = (strScreen) => {
     switch (strScreen) {
-        case CONST_SCREEN.LIST_MANGA:
+        case CONST_SCREEN.LIST:
             Menu.Show(strScreen);
-            Books.Show();
+            List.Show();
             break;
-        case CONST_SCREEN.MANGA_DETAIL:
-            BookDetail.Show();
-            break;
-        case CONST_SCREEN.LIST_NHAN_VAT:
-            Menu.Show(strScreen);
+        case CONST_SCREEN.DETAIL:
+            Detail.Show();
             break;
         default:
             break;

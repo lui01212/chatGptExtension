@@ -1,8 +1,7 @@
 
 const CONST_SCREEN = {
-    LIST_MANGA: "LIST_MANGA",
-    MANGA_DETAIL: "MANGA_DETAIL",
-    LIST_NHAN_VAT: "LIST_TRUYEN",
+    LIST: "LIST",
+    DETAIL: "DETAIL"
 }
 
 const chromeTabsQuery = (objDataSend, callBack) => {

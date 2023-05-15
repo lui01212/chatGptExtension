@@ -1,0 +1,25 @@
+.table {
+    table-layout: fixed;
+}
+
+.table>tbody>tr>td:nth-child(1) {
+    width: 60%;
+}
+
+.table>tbody>tr>td:nth-child(2) {
+    width: 10%;
+}
+
+.table>tbody>tr>td:nth-child(3) {
+    width: 30%;
+}
+
+.text-overflow {
+    white-space: nowrap;
+    /* Prevents text from wrapping to the next line */
+    overflow: hidden;
+    /* Hides any overflowing content */
+    text-overflow: ellipsis;
+    /* Adds ellipsis (...) at the end of the truncated text */
+
+}

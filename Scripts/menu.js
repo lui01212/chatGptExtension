@@ -1,13 +1,9 @@
 function ClassMenu() {
     let objDataMenu = [
         {
-            title: "List Truyện",
-            screen: CONST_SCREEN.LIST_MANGA
-        },
-        {
-            title: "List nhân vật",
-            screen: CONST_SCREEN.LIST_NHAN_VAT
-        },
+            title: "List",
+            screen: CONST_SCREEN.LIST
+        }
     ];
 
     this.Show = (_menu) => {
