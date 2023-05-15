@@ -5,7 +5,9 @@ window.onload = () => {
         if (typeof onStartUp != "undefined") {
             onStartUp();
         }
-    } catch (ex) { alert(ex); }
+    } catch (ex) {
+        alert(ex);
+    }
 };
 
 const onStartUp = () => {
@@ -14,13 +16,13 @@ const onStartUp = () => {
 
 const createGateMessage = () => {
     chrome.extension.onMessage.addListener((request, _, sendResponse) => {
+        console.log(request);
         switch (request.type) {
             case "chat":
                 chatWithText(request.text, sendResponse);
                 break;
             case "get-chat":
-                gobjElm = null;
-                getChatTimeOunt(sendResponse);
+                sendResponse(getChat());
                 break;
             default:
                 break;
@@ -48,7 +50,6 @@ const getChatTimeOunt = (sendResponse) => {
     if (gobjElm) {
         objElm = getChat();
         if (gobjElm.content.length == objElm.content.length) {
-            console.log(gobjElm);
             sendResponse(gobjElm);
         } else {
             gobjElm = getChat();
@@ -60,7 +61,7 @@ const getChatTimeOunt = (sendResponse) => {
         gobjElm = getChat();
         setTimeout(function () {
             getChatTimeOunt(sendResponse);
-        }, 10000);
+        }, 3000);
     }
 }
 

@@ -4,12 +4,16 @@ window.onload = () => {
             //
             onStartUp();
         }
-    } catch (ex) { alert(ex); }
+    } catch (ex) {
+        alert(ex);
+    }
 };
 
 const onStartUp = () => {
-    showScreen(CONST_SCREEN.LIST_NHAN_VAT);
+    showScreen(CONST_SCREEN.LIST_MANGA);
 }
+
+
 const showScreen = (strScreen) => {
     switch (strScreen) {
         case CONST_SCREEN.LIST_MANGA:
