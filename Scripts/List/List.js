@@ -10,6 +10,7 @@ function ClassList() {
         //
         show();
     }
+
     this.Return = () => {
         let objData = getObjData();
         if (objData) {
@@ -46,7 +47,7 @@ function ClassList() {
         const [error, response] = await apiRequest.get("api/list/GetList", objDataPara);
         return [error, response];
     }
-    //
+
     const _completeGetList = async (error, response) => {
         let blnCheck = true;
         if (error) {
@@ -126,19 +127,47 @@ function ClassList() {
             getContentChatGpt(competeListBook);
         });
         $('#bln-list-add').on('click', addList);
-        $('.btn-detail').on('click', List.clickDetail);
+        $('.btn-detail').on('click', clickDetail);
         $('.btn-list').on('click', clickList);
-        $('.btn-delete').on('click', List.clickDelete);
+        $('.btn-delete').on('click', clickDelete);
         if (getObjData()) {
             $('#btn-return').on('click', clickReturn);
         } else {
             $('#btn-return').hide();
         }
-
     }
 
-    this.clickDetail = () => {
+    function clickDetail() {
+        let indexlist = $(this).attr("indexlist");
+        Detail.Show(_objDataList[indexlist]);
+    }
 
+    this.Delete = async (objData) => {
+        const [error, response] = await _svDelete(objData);
+        if (_completeDelete(error, response) == false) {
+            return;
+        }
+        //
+        show();
+    }
+
+    const _svDelete = async (objData) => {
+        const [error, response] = await apiRequest.post("api/list/Delete", objData);
+        return [error, response];
+    }
+
+    const _completeDelete = async (error, response) => {
+        let blnCheck = true;
+        if (error) {
+            alert(error);
+        }
+        //
+        return blnCheck;
+    }
+
+    function clickDelete() {
+        let indexlist = $(this).attr("indexlist");
+        List.Delete(_objDataList[indexlist]);
     }
 
     function clickList() {
@@ -168,7 +197,7 @@ function ClassList() {
         const [error, response] = await apiRequest.post("api/list/create", objData);
         return [error, response];
     }
-    //
+
     const _completeCreateList = async (error, response) => {
         let blnCheck = true;
         if (error) {
