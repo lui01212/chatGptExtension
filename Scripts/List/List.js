@@ -166,8 +166,10 @@ function ClassList() {
     }
 
     function clickDelete() {
-        let indexlist = $(this).attr("indexlist");
-        List.Delete(_objDataList[indexlist]);
+        if (confirm("Bạn có muốn xóa không !") == true) {
+            let indexlist = $(this).attr("indexlist");
+            List.Delete(_objDataList[indexlist]);
+        }
     }
 
     function clickList() {
