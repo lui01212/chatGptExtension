@@ -65,6 +65,7 @@ function ClassDetail() {
 
     const _svUpdateDetail = async (objData) => {
         objData.title = $('#title').val();
+        objData.key = $('#key').val();
         objData.description = $('#description').val();
         objData.content = _objEditor.getData();
         const [error, response] = await apiRequest.post("api/detail/update", objData);
@@ -93,7 +94,12 @@ function ClassDetail() {
         objData.id = _objData.id;
         objData.title = $('#title').val();
         objData.content = _objEditor.getData();
+
+        objData.content += `<!-- wp:block {"ref":8856} /-->`;
+        objData.content += `<!-- wp:latest-posts /-->`;
+
         objData.link = '_'
+        objData.key = $('#key').val();
         objData.description = $('#description').val();
         objData.cover_image = '_';
         objData.done = '0';
@@ -179,6 +185,10 @@ function ClassDetail() {
         strHtml += ` <div class="form-group">`;
         strHtml += `   <label for="description">Mô tả:</label>`;
         strHtml += `   <textarea class="form-control" id="description" rows="5">${_objDetail ? _objDetail.description : ``}</textarea>`;
+        strHtml += ` </div>`;
+        strHtml += ` <div class="form-group">`;
+        strHtml += `   <label for="key">KeyWord:</label>`;
+        strHtml += `   <textarea class="form-control" id="key" rows="3">${_objDetail ? _objDetail.key : ``}</textarea>`;
         strHtml += ` </div>`;
         strHtml += ` <div class="form-group">`;
         strHtml += `   <label for="content-detail">Nội dung:</label>`;
