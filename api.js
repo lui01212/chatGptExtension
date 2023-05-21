@@ -98,7 +98,7 @@ const apiOptions = () => {
     };
 };
 
-const apiBaseUrl = "https://localhost:44394/";
+const apiBaseUrl = "http://localhost/chatgpt/";
 const apiRequest = RequestBuilder(
     apiBaseUrl,
     {

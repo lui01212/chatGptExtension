@@ -33,6 +33,7 @@ function ClassDetail() {
         //
         $('#btn-return').on('click', clickReturn);
         $('#bln-create').on('click', clickCreateDetail);
+        $('#btn-posts').on('click', clickPosts);
     }
 
     function clickReturn() {
@@ -138,6 +139,30 @@ function ClassDetail() {
         //
         return blnCheck;
     }
+    async function clickPosts() {
+        const [error, response] = await _svPostsCreate();
+        if (_completePostsCreate(error, response) == false) {
+            return;
+        }
+        //
+        return true;
+    }
+
+    const _svPostsCreate = async () => {
+        const [error, response] = await apiRequest.post("api/posts/create", _objDetail);
+        return [error, response];
+    }
+
+    const _completePostsCreate = async (error, response) => {
+        let blnCheck = true;
+        if (error) {
+            alert(error);
+        } else {
+            alert("Đã tạo bài viết thành công");
+        }
+        //
+        return blnCheck;
+    }
 
     const initPage = () => {
         let strHtml = "";
@@ -145,10 +170,11 @@ function ClassDetail() {
         strHtml += ` <div class="form-group">`;
         strHtml += `   <button type="button" id="btn-return" class="btn btn-primary">Trở lại</button>`;
         strHtml += `   <button type="button" class="btn btn-primary btn-get-chat">Lấy dữ liệu ChatGpt</button>`;
+        strHtml += `   <button type="button" id="btn-posts" class="btn btn-primary">Đăng bài</button>`;
         strHtml += ` </div>`;
         strHtml += ` <div class="form-group">`;
         strHtml += `   <label for="title">Tiêu đề:</label>`;
-        strHtml += `   <input class="form-control" id="title" ${_objData ? `value="${_objData.title}"` : ``}/>`;
+        strHtml += `   <input class="form-control" id="title" ${_objDetail ? `value="${_objDetail.title}"` : `value="${_objData.title}"`}/>`;
         strHtml += ` </div>`;
         strHtml += ` <div class="form-group">`;
         strHtml += `   <label for="description">Mô tả:</label>`;
