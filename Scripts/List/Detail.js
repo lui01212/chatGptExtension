@@ -35,7 +35,7 @@ function ClassDetail() {
             chatChatGpt(strChat, competeContentChatGpt);
         });
         $('.btn-chat-still').on("click", function () {
-            let strChat = `Still not 5000 words .
+            let strChat = `Still not 7000+ words .
             `;
             chatChatGpt(strChat, competeContentChatGpt);
         });
