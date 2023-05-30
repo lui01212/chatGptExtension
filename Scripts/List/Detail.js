@@ -26,13 +26,30 @@ function ClassDetail() {
                 console.error(error);
             });
 
-        $('.btn-get-chat').on("click", function () {
+        $('.btn-get-chat-content-detail').on("click", function () {
             getContentChatGpt(competeContentChatGpt);
         });
+        $('.btn-chat-content-detail').on("click", function () {
+            let strChat = `From now on, I want you to act as an SEO expert. The article has a high SEO ranking ability, no repetition of words, 100% human-like text, fluency, and paragraph breaks.The article must be more than 7000+ words long.Presented in font size: H1, H2, H3..v.v. Write a standard SEO article about: ${$('#title').val()} .
+            `;
+            chatChatGpt(strChat, competeContentChatGpt);
+        });
+        $('.btn-chat-still').on("click", function () {
+            let strChat = `Still not 5000 words .
+            `;
+            chatChatGpt(strChat, competeContentChatGpt);
+        });
 
+        $('.btn-get-chat-description').on("click", function () {
+            getContentChatGpt(competeDescriptionChatGpt);
+        });
+        $('.btn-chat-description').on("click", function () {
+            let strChat = `Create a short 25 word keyword description from the paragraph above`;
+            chatChatGpt(strChat, competeDescriptionChatGpt);
+        });
         //
         $('#btn-return').on('click', clickReturn);
-        $('#bln-create').on('click', clickCreateDetail);
+        $('.bln-create').on('click', clickCreateDetail);
         $('#btn-posts').on('click', clickPosts);
     }
 
@@ -121,6 +138,10 @@ function ClassDetail() {
         _objEditor.setData(content);
     }
 
+    const competeDescriptionChatGpt = (content) => {
+        $('#description').val(content);
+    }
+
     const initData = async () => {
         const [error, response] = await _svGetDetail();
         if (_completeGetDetail(error, response) == false) {
@@ -175,8 +196,8 @@ function ClassDetail() {
         //
         strHtml += ` <div class="form-group">`;
         strHtml += `   <button type="button" id="btn-return" class="btn btn-primary">Trở lại</button>`;
-        strHtml += `   <button type="button" class="btn btn-primary btn-get-chat">Lấy dữ liệu ChatGpt</button>`;
         strHtml += `   <button type="button" id="btn-posts" class="btn btn-primary">Đăng bài</button>`;
+        strHtml += ` <button type="submit" class="bln-create btn btn-primary">${_objDetail ? `Cập nhật` : `Thêm mới`}</button>`;
         strHtml += ` </div>`;
         strHtml += ` <div class="form-group">`;
         strHtml += `   <label for="title">Tiêu đề:</label>`;
@@ -185,6 +206,9 @@ function ClassDetail() {
         strHtml += ` <div class="form-group">`;
         strHtml += `   <label for="description">Mô tả:</label>`;
         strHtml += `   <textarea class="form-control" id="description" rows="5">${_objDetail ? _objDetail.description : ``}</textarea>`;
+        strHtml += `   <hr>`;
+        strHtml += `   <button type="button" class="btn btn-primary btn-get-chat-description">Lấy dữ liệu ChatGpt</button>`;
+        strHtml += `   <button type="button" class="btn btn-primary btn-chat-description">ChatGpt</button>`;
         strHtml += ` </div>`;
         strHtml += ` <div class="form-group">`;
         strHtml += `   <label for="key">KeyWord:</label>`;
@@ -193,8 +217,12 @@ function ClassDetail() {
         strHtml += ` <div class="form-group">`;
         strHtml += `   <label for="content-detail">Nội dung:</label>`;
         strHtml += `   <textarea class="form-control" id="content-detail" rows="5">${_objDetail ? _objDetail.content : ``}</textarea>`;
+        strHtml += `   <hr>`;
+        strHtml += `   <button type="button" class="btn btn-primary btn-get-chat-content-detail">Lấy dữ liệu ChatGpt</button>`;
+        strHtml += `   <button type="button" class="btn btn-primary btn-chat-content-detail">ChatGpt</button>`;
+        strHtml += `   <button type="button" class="btn btn-primary btn-chat-still">Still ChatGpt</button>`;
         strHtml += ` </div>`;
-        strHtml += ` <button type="submit" id="bln-create" class="btn btn-primary">${_objDetail ? `Cập nhật` : `Thêm mới`}</button>`;
+        strHtml += ` <button type="submit" class="bln-create btn btn-primary">${_objDetail ? `Cập nhật` : `Thêm mới`}</button>`;
         //
         $('#Content').html(strHtml);
     }
