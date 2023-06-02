@@ -30,7 +30,7 @@ function ClassDetail() {
             getContentChatGpt(competeContentChatGpt);
         });
         $('.btn-chat-content-detail').on("click", function () {
-            let strChat = `From now on, I want you to act as an SEO expert. The article has a high SEO ranking ability, no repetition of words, 100% human-like text, fluency, and paragraph breaks.The article must be more than 7000+ words long.Presented in font size: H1, H2, H3..v.v. Write a standard SEO article about: ${$('#title').val()} .
+            let strChat = `From now on, I want you to act as an SEO expert. The article has a high SEO ranking ability,In-depth analysis, no repetition of words, 100% human-like text, fluency, and paragraph breaks.The article must be more than 7000+ words long.The platform limitations, the whole 7000+ word article would need to be divided into multiple parts.Presented in font size: H1, H2, H3..v.v. Write a standard SEO article about: ${$('#title').val()} .
             `;
             chatChatGpt(strChat, competeContentChatGpt);
         });
