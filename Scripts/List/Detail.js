@@ -29,8 +29,19 @@ function ClassDetail() {
         $('.btn-get-chat-content-detail').on("click", function () {
             getContentChatGpt(competeContentChatGpt);
         });
+
+        $('.btn-get-chat-content-detail-plus').on("click", function () {
+            getContentChatGpt(competeContentChatGptPlus);
+        });
+        
+        $('.btn-chat-content-detail-continue').on("click", function () {
+            let strChat = `continue`;
+            chatChatGpt(strChat, competeContentChatGptPlus);
+        });
+
         $('.btn-chat-content-detail').on("click", function () {
-            let strChat = `From now on, I want you to act as an SEO expert. The article has a high SEO ranking ability,In-depth analysis, no repetition of words, 100% human-like text, fluency, and paragraph breaks.The article must be more than 7000+ words long.The platform limitations, the whole 7000+ word article would need to be divided into multiple parts.Presented in font size: H1, H2, H3..v.v. Write a standard SEO article about: ${$('#title').val()} .
+            let num = $('#num').val() != "" ? $('#num').val() : "2000";
+            let strChat = `From now on, I want you to act as an SEO expert. The article has a high SEO ranking ability,In-depth analysis, no repetition of words, 100% human-like text, fluency, and paragraph breaks.The article must be more than ${num}+ words long.The platform limitations, the whole ${num}+ word article would need to be divided into 2 parts.Presented in font size: H1, H2, H3..v.v. Write a standard SEO article about: ${$('#title').val()} .
             `;
             chatChatGpt(strChat, competeContentChatGpt);
         });
@@ -138,6 +149,11 @@ function ClassDetail() {
         _objEditor.setData(content);
     }
 
+
+    const competeContentChatGptPlus = (content) => {
+        _objEditor.setData(_objEditor.getData() + content);
+    }
+
     const competeDescriptionChatGpt = (content) => {
         $('#description').val(content);
     }
@@ -219,7 +235,10 @@ function ClassDetail() {
         strHtml += `   <textarea class="form-control" id="content-detail" rows="5">${_objDetail ? _objDetail.content : ``}</textarea>`;
         strHtml += `   <hr>`;
         strHtml += `   <button type="button" class="btn btn-primary btn-get-chat-content-detail">Lấy dữ liệu ChatGpt</button>`;
+        strHtml += `   <button type="button" class="btn btn-primary btn-get-chat-content-detail-plus">Lấy dữ liệu ChatGpt+</button>`;
         strHtml += `   <button type="button" class="btn btn-primary btn-chat-content-detail">ChatGpt</button>`;
+        strHtml += `   <input type="text" id="num" value="2000"/>`;
+        strHtml += `   <button type="button" class="btn btn-primary btn-chat-content-detail-continue">Continue</button>`;
         strHtml += `   <button type="button" class="btn btn-primary btn-chat-still">Still ChatGpt</button>`;
         strHtml += ` </div>`;
         strHtml += ` <button type="submit" class="bln-create btn btn-primary">${_objDetail ? `Cập nhật` : `Thêm mới`}</button>`;
